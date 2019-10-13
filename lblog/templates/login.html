@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/login/" method="post">
+    {% csrf_token %}
+    <p>{{ fm.user.label }}{{ fm.user }}{{ fm.errors.user.0 }}</p>
+    <p>{{ fm.pwd.label }}{{ fm.pwd }}{{ fm.errors.pwd.0 }}</p>
+    <input type="submit">
+</form>
+
+</body>
+</html>

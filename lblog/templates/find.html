@@ -1,0 +1,71 @@
+{% extends "master.html" %}
+{#导航栏#}
+{% block native %}
+    <li class="nav-item">
+        <a class="nav-link" href="/index/">首页</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/archive/">目录</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/comments/">留言区</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/diary/">私人日记</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/about/">关于我</a>
+    </li>
+{% endblock %}
+
+{#输出内容#}
+{% block content %}
+    <h3>{{ title }}</h3>
+    <hr>
+    {% for row in article %}
+            <div class="post-preview">
+                <font color="blue">[{{ row.date_publish }}]</font>
+                <a target="_blank" href="/article/{{ row.id }}">
+                    {% if row.is_recommend == 0 %}
+                            {{ row.title }}
+                        {% else %}
+                        <font color="#EE0000">[推荐]</font>{{ row.title }}
+                        {% endif %}
+                </a>
+            </div>
+            <hr>
+    {% endfor %}
+{% endblock %}
+
+{#联系作者 images #}
+{% block author %}
+    <section class="blog-nav">
+        <hr>
+        <h5>联系本人</h5>
+        <div class="blog-img">
+            <img src="/static/imgs/weixin_logo_raw.png">
+        </div>
+    </section>
+{% endblock %}
+
+
+{# tags #}
+{% block tags %}
+    {% for row in tags %}
+        <a target="_blank" href="/tags/{{ row.id }}" title="{{ row.name }}" rel="{{ row.id }}">
+            {{ row.name }}
+        </a>
+    {% endfor %}
+{% endblock %}
+
+{#常用链接#}
+{% block links %}
+{#    <li>#}
+{#       <a target="_blank" href="http://gityuan.com/android">Android系统架构开篇    </a>#}
+{#    </li>#}
+    {% for row in links %}
+        <li>
+        <a target="_blank" href="{{ row.link }}">{{ row.desc }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,123 @@
+/* 通用样式 begin */
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+h5 {
+    font-size: 14px;
+    color: grey;
+}
+/* a{
+    color: gray;
+}
+a:hover {
+    text-decoration: none;
+    color: gray;
+} */
+
+ul, ol {
+    list-style: none;
+}
+
+/* 通用样式 end */
+
+/* 头部 begin */
+
+
+#blog-header {
+    width: 100%;
+    background: no-repeat center center;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 500px;
+}
+.edit-header {
+    font-size: 40px;
+}
+.header-h {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    font-size:60px;
+}
+
+.dropdown-menu1 {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+}
+/* 头部 end */
+/* content begin*/
+.tags a{
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 999em;
+    padding: 0 10px;
+    color: grey;
+    line-height: 24px;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0 1px;
+    margin-bottom: 6px; 
+}
+.tags a:hover{
+    border: 1px solid cadetblue ;
+    color: cadetblue;
+}
+.post-preview h2{
+    text-decoration: none;
+    color: #404040;
+   
+}
+.post-preview h2{
+    color: darkslategray;
+}
+.post-preview a {
+    text-decoration: none;
+    color: gray;
+}
+.post-preview a:hover {
+    color: darkslategray;
+}
+.blog-nav h5 {
+    color: gray;
+    text-decoration: none;
+}
+.list-inline a{
+    color: #bfbfbf;
+    text-decoration: none;
+}
+.list-inline a:hover{
+    color: darkslategray;
+    text-decoration: none;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: grey;
+    border-color: grey;
+  }
+.page-item .page-link {
+    color: #6c757d;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+/* content end */
+/* footer begin */
+.text-muted {
+    color: #777;
+}
+/* footer end */
+

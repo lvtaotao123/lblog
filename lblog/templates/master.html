@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'lib/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="shortcut icon" href="{% static 'imgs/lk_favicon.ico' %}" type="image/x-icon">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <!-- 导航栏 begin -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top ">
+        <a class="navbar-brand " href="#">
+          <!-- <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+          L&T&T
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0" action="/find/" method="post">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" name="find_content" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav">
+                {% block native %}
+                {% endblock %}
+            </ul>
+        </div>
+      </nav>
+    <!-- 导航栏 end -->
+    <!-- header begin -->
+    <header id="blog-header"  class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1  ">
+                    <div class="align-self-center text-center d-flex align-items-center " style="height: 500px; width:100%;color: cornsilk;margin:auto;">
+                            <div>
+                                    <h1 class="header-h">L&T&T</h1><br>
+                                    <span class="edit-header">The brighter you are, the more you have to learn.</span>
+                            </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <!-- content begin-->
+    <div class="container">
+        <div class="row">
+            <!-- 第一部分begin -->
+            <div class="col-lg-8 offset-lg-1 col-md-8 offset-md-1 col-sm-12 col-xs-12" style="padding-top: 40px;">
+                {% block content %}
+                {% endblock %}
+                {% block page %}
+                {% endblock %}
+            </div>
+
+            <!-- 第一部分end -->
+            <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-12">
+                <!-- Short About -->
+                {% block author %}
+                {% endblock %}
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>标签</h5>
+                    <div class="tags">
+                        {% block tags %}
+                        {% endblock %}
+                    </div>
+                </section>
+
+                 <hr>
+                 <h5>常用链接</h5>
+                 <ul class="list-inline">
+                     {% block links %}
+                     {% endblock %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- content end -->
+    <!-- 底部 begin -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-col-lg-2 col-md-10 offset-col-md-1">
+                    <p class="copyright text-muted text-center" style="color: #777;">
+                        Copyright © TaoTao  2019 | Powered by bootstrap with Django
+                    </p>
+                   
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- 底部 end -->
+    
+    <script src="{% static 'lib/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'lib/bootstrap.min.js' %}"></script>
+    {% block js %}
+    {% endblock %}
+</body>
+</html>

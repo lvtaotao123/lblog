@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+{% block native %}
+    <li class="nav-item">
+        <a class="nav-link" href="/index/">首页</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/archive/">目录</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/comments/">留言区</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/diary/">私人日记</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/about/">关于我</a>
+    </li>
+{% endblock %}
+
+{% block author %}
+    <section class="blog-nav">
+        <hr>
+        <h5>联系本人</h5>
+        <div class="blog-img">
+            <img src="/static/imgs/weixin_logo_raw.png">
+        </div>
+    </section>
+{% endblock %}
+
+{% block tags %}
+    {% for row in tags %}
+        <a target="_blank" href="/tags/{{ row.id }}" title="{{ row.name }}" rel="{{ row.id }}">
+            {{ row.name }}
+        </a>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <h1>哈哈，第一次做博客</h1>
+    <p>也许从今天开始就开始写博客了，一直想写，一直懒惰。</p>
+    <p>大一的时候，觉得生活是橙色的。太多新生活扑面而来，新鲜而灿烂，热情而紧张。橙色的记忆里，
+        第一次见到知名教授的激动，第一次加入社团的好奇，第一次考试的紧张……</p>
+{% endblock %}
+
+{#常用链接#}
+{% block links %}
+{#    <li>#}
+{#       <a target="_blank" href="http://gityuan.com/android">Android系统架构开篇    </a>#}
+{#    </li>#}
+    {% for row in links %}
+        <li>
+        <a target="_blank" href="{{ row.link }}">{{ row.desc }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'master.html' %}
+{% block css %}
+    <style>
+        .comment-pid {
+            margin-left: 10%;
+            background-color: #eaeaec;
+            margin-top: 5px;
+        }
+        .hide{
+            display: none;
+        }
+        .fat{
+            font-family: "Droid Serif", "DejaVu Serif", "STIX", serif;
+        }
+        .rightdiv {
+            color: #0f6674;
+        }
+        {#.rightdiv a:hover {#}
+        {#    text-decoration: none;#}
+        {#    color: #7abaff;#}
+        {#}#}
+        #f_area {
+            width: 80%;
+        }
+    </style>
+{% endblock %}
+{% block native %}
+    <li class="nav-item">
+        <a class="nav-link" href="/index/">首页</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/archive/">目录</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/comments/">留言区</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/diary/">私人日记</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/about/">关于我</a>
+    </li>
+{% endblock %}
+
+{% block author %}
+    <section class="blog-nav">
+        <hr>
+        <h5>联系本人</h5>
+        <div class="blog-img">
+            <img src="/static/imgs/weixin_logo_raw.png">
+        </div>
+    </section>
+{% endblock %}
+
+{% block tags %}
+    {% for row in tags %}
+        <a target="_blank" href="/tags/{{ row.id }}" title="{{ row.name }}" rel="{{ row.id }}">
+            {{ row.name }}
+        </a>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h3>欢迎大家畅所欲言</h3>
+        <hr>
+        <ul>
+            <li>可以是您发现博客有什么不对的地方</li>
+            <br>
+            <li>可以是您在某些方面对我的建议</li>
+            <br>
+            <li>可以是您的经验或者感悟</li>
+            <br>
+            <li>...</li>
+        </ul>
+        <textarea id="comment" style="width: 100%;height: 200px;">
+
+        </textarea>
+        <button type="button" id="ajax_btn" class="btn btn-info">回复</button>
+    </div>
+    <br>
+    <div>
+        <p><h3></h3>评论</p>
+        {% for row in comment %}
+            <div class="fat">
+                <p>大哥:{{ row.content }}</p>
+                {% for j in row.child_comment %}
+                    <div class="comment-pid">
+                        L&T&T:{{ j.content }}
+
+{#  如果需要添加再恢复功能                      <div class="rightdiv" >{{ j.data_publish|date:'Y-m-d H:i:s'}}&nbsp;&nbsp;<a id="btn_a" href="javascript:void(0);">回复</a><input id="f_area" type="text" class="hide"><a id="b_a" class="hide" href="javascript:void(0);">提交</a></div>#}
+                    </div>
+                {% endfor %}
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{#常用链接#}
+{% block links %}
+{#    <li>#}
+{#       <a target="_blank" href="http://gityuan.com/android">Android系统架构开篇    </a>#}
+{#    </li>#}
+    {% for row in links %}
+        <li>
+        <a target="_blank" href="{{ row.link }}">{{ row.desc }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(function(){
+            $("#ajax_btn").click(function () {
+                $.ajax({
+                    url: '/ajax_comment/',
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}', 'comment':$("#comment").val() },
+                    type: 'POST',
+                    traditional: true,
+                    dataType:'JSON',
+                    success: function(obj){
+                        alert(obj['data']);
+                        $("#comment").val("");
+                    },
+                })
+            })
+            {#$("#btn_a").click(function () {#}
+            {#    $("#b_a").toggleClass("hide");#}
+            {#    $("#f_area").toggleClass("hide");#}
+            {#})#}
+
+        })
+    </script>
+{% endblock %}
